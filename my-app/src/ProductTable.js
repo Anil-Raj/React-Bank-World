@@ -8,7 +8,7 @@ export default class ProductTable extends React.Component {
       const rows = [];
   
       this.props.products.forEach((product) => {
-          console.log(account,product.stocked,product)
+          console.log(account,product.name,product)
         if (account && product.name != 'Football') {
           return;
         }

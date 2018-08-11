@@ -6,7 +6,9 @@ class FilterRow extends React.Component {
   }
   
   handleFilterChange(e) {
-    this.props.handleFilterChange(e.target.checked);
+    console.log(e);
+    console.log(e.target);    
+    this.props.handleFilterChange(e);
   }
   
   render() {
@@ -16,8 +18,6 @@ class FilterRow extends React.Component {
                 type="checkbox"
                 checked={this.props.isChecked}
                 onChange={this.handleFilterChange}
-                
-                
             />
             {this.props.value}
         </div>

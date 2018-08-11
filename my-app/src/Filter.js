@@ -3,6 +3,7 @@ import FilterRow from './FilterRow';
 class Filter extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.handleFilterChange = this.handleFilterChange.bind(this);
     this.state = {
         currentValues: []
@@ -10,8 +11,10 @@ class Filter extends React.Component {
   }
   
   handleFilterChange(e) {
-      console.log(e);
-    this.props.handleFilterChange(e.target.checked);
+    console.log('parent');
+    console.log(e);
+    console.log(e.target);
+    this.props.handleFilterChange(e.target);
   }
   
   render() {
