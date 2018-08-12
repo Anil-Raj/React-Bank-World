@@ -13,6 +13,8 @@ class FilterableProductTable extends React.Component {
       account: [],
       items: this.props.transactions.slice(0, 1)
     };
+
+   
     this.handleFilterChange = this.handleFilterChange.bind(this);
   }
   recursive = () => {
@@ -33,28 +35,27 @@ class FilterableProductTable extends React.Component {
     this.recursive();
   }
   render() {
-    const rows = [];
-    this.state.items.map(item => {
-      // account = this.state.account;
-      console.log(this.state.account);
-        console.log(this.state.account.length > 0, this.state.account.indexOf(item.accountName),item.name)
-      if (this.state.account.length > 0 && this.state.account.indexOf(item.accountName)  == -1 ) {
-        return;
-      }
-
-      rows.push(
-        <TransactionRow
-          product={item}
-          key={item.name} />
-      );
-    });
     return (
       <div>
         <Filter
           account={this.state.account}
           handleFilterChange={this.handleFilterChange}
         />
-       {rows}
+        
+        {this.state.items.map(item => {
+                // console.log(this.state.account)
+                // console.log(this.state.account.length , this.state.account.indexOf(item.accountName),item.name)
+              //   console.log(this.state.account.length == 0 ||( this.state.account.length > 0 && this.state.account.indexOf(item.accountName)  > -1 ));
+              // if (this.state.account.length == 0 ||( this.state.account.length > 0 && this.state.account.indexOf(item.accountName)  > -1 )) {
+              //   console.log(item);
+                <TransactionRow
+                  product={item}
+                  key={item.name}
+                />
+              
+              
+        })
+      }
       </div>
     );
   }
