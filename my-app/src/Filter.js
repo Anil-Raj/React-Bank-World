@@ -1,33 +1,36 @@
-import React,{Component} from 'react';
-import FilterRow from './FilterRow';
+import React, { Component } from "react";
+import FilterRow from "./FilterRow";
 class Filter extends React.Component {
   constructor(props) {
     super(props);
     console.log(props);
     this.handleFilterChange = this.handleFilterChange.bind(this);
-    this.state = {
-        currentValues: []
-      }
+    this.account = [];
+    this.filters_list = ["Savings Account", "Checking Account","Auto Loan Account","Credit Card Account","Investment Account","Home Loan Account"];
   }
-  
-  handleFilterChange(e) {
-    console.log('parent');
-    console.log(e);
-    console.log(e.target);
-    this.props.handleFilterChange(e.target);
+
+  handleFilterChange(value) {
+    if (this.account.indexOf(value) == -1) {
+      this.account.push(value);
+    } else {
+      this.account = this.account.filter(ac => ac != value);
+    }
+    this.props.handleFilterChange(this.account);
   }
-  
+
   render() {
     return (
       <form>
-          <FilterRow value="green" isChecked={this.state.currentValues.indexOf('green') > -1} handleFilterChange={this.handleFilterChange}
+        {this.filters_list.map((filter) => 
+          <FilterRow
+            value={filter}
+            isChecked={this.account.indexOf(filter) > -1}
+            handleFilterChange={this.handleFilterChange}
           />
-          <FilterRow value="red" isChecked={this.state.currentValues.indexOf('red') > -1}  handleFilterChange={this.handleFilterChange}
-          />
+        )}
       </form>
     );
   }
 }
-
 
 export default Filter;

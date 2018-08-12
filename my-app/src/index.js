@@ -3,24 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import FilterableProductTable from './FilterableProductTable';
 import registerServiceWorker from './registerServiceWorker';
-
-
-
-
-const PRODUCTS = [
-    {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
-    {category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'},
-    {category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball'},
-    {category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch'},
-    {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
-    {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
-  ];
-  
+import data from './data.json';
 
   
 // ReactDOM.render(<App />, document.getElementById('root'));
 ReactDOM.render(
-    <FilterableProductTable products={PRODUCTS} />,
+    <FilterableProductTable transactions={data.transactions} />,
     document.getElementById('container')
   );
   

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import ProductRow from './ProductRow';
+import TransactionRow from './TransactionRow';
+
 
 export default class ProductTable extends React.Component {
     render() {
@@ -7,14 +8,15 @@ export default class ProductTable extends React.Component {
   
       const rows = [];
   
-      this.props.products.forEach((product) => {
-          console.log(account,product.name,product)
-        if (account && product.name != 'Football') {
+      this.props.transactions.forEach((product) => {
+        console.log(account);
+          console.log(account.length > 0, account.indexOf(product.accountName),product.name)
+        if (account.length > 0 && account.indexOf(product.accountName)  == -1 ) {
           return;
         }
 
         rows.push(
-          <ProductRow
+          <TransactionRow
             product={product}
             key={product.name}
           />

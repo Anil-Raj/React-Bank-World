@@ -8,7 +8,7 @@ class FilterRow extends React.Component {
   handleFilterChange(e) {
     console.log(e);
     console.log(e.target);    
-    this.props.handleFilterChange(e);
+    this.props.handleFilterChange(this.props.value);
   }
   
   render() {
