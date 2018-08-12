@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import TransactionRow from './TransactionRow';
 
 
-export default class ProductTable extends React.Component {
+export default class TransactionTable extends React.Component {
     render() {
       const account = this.props.account;
   

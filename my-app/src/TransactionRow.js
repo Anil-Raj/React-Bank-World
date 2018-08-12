@@ -7,11 +7,11 @@ class TransactionRow extends React.Component {
       
 
       return (
-        <div>
-          <div>{product.accountName}</div>
-          <div>{product.amount}</div>
-          <div>{product.transactionType}</div>
-        </div>
+        <tr>
+          <td>{product.accountName}</td>
+          <td>{product.amount}</td>
+          <td>{product.transactionType}</td>
+        </tr>
       );
     }
   }
