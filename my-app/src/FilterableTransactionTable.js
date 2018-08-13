@@ -3,54 +3,62 @@ import logo from "./logo.svg";
 import "./FilterableTransactionTable.css";
 import TransactionRow from "./TransactionRow.js";
 import Filter from "./Filter";
-import TransactionTable from "./TransactionTable";
+import store from './store';
+import Pagination from './Pagination';
 
 class FilterableTransactionTable extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      type: [],
-      account: [],
-      items: this.props.transactions.slice(0, 1)
-    };
+     this.transactions = this.props.transactions;
+     this.visibleTransactions = this.transactions.slice(0,1);
 
-    this.handleFilterChange = this.handleFilterChange.bind(this);
+    store.subscribe(()=>{
+      console.log(store.getState());    
+      this.visibleTransactions = this.getVisibleTransactions(this.transactions,store.getState().filter);
+    })
+  }
+
+  getVisibleTransactions = (transactions,filter) =>{
+    return transactions.filter(t=> filter.account.length == 0|| filter.account.indexOf(t.accountName)!=-1 )
   }
   recursive = () => {
     setTimeout(() => {
       let hasMore =
-        this.state.items.length + 1 < this.props.transactions.length;
-      this.setState((prev, props) => ({
-        items: props.transactions.slice(0, prev.items.length + 1)
-      }));
-      if (hasMore) this.recursive();
+        this.visibleTransactions.length + 1 < this.props.transactions.length;
+        console.log(hasMore,this.visibleTransactions.length + 1);
+        console.log(this.visibleTransactions.length);
+        
+        this.visibleTransactions = this.transactions.slice(0,  this.visibleTransactions.length + 1)
+      if (hasMore) {this.recursive();this.render();}
     }, 0);
   };
-  handleFilterChange(account) {
-    this.setState({
-      account: account
-    });
-  }
+
   componentDidMount() {
     this.recursive();
+    
   }
   render() {
-
     return (
-      <div>
-        <Filter
-          account={this.state.account}
-          handleFilterChange={this.handleFilterChange}
-        />
-        {
-          this.state.items
-        .filter(item => this.state.account.length == 0 || (this.state.account.length > 0 && this.state.account.indexOf(item.accountName) > -1))
-        .map(item => 
-          <TransactionRow product={item} key={item.name} />
-        )
-      }
+      <div className="container">
+        <div className="row">
+          <Filter
+            className="col-md-4"
+          />
+                        {/* <Pagination
+                totalRecords={this.transactions}
+                pageLimit={18}
+                pageNeighbours={1}
+                onPageChanged={this.onPageChanged}
+              /> */}
+          <div className="col-md-8">
+            {this.visibleTransactions
+              .map((item,index) => (
+                <TransactionRow product={item} key={index} />
+              ))}
+          </div>
+        </div>
       </div>
-    )
+    );
   }
 }
 

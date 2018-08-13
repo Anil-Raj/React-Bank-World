@@ -5,9 +5,7 @@ class FilterRow extends React.Component {
     this.handleFilterChange = this.handleFilterChange.bind(this);
   }
   
-  handleFilterChange(e) {
-    console.log(e);
-    console.log(e.target);    
+  handleFilterChange(e) { 
     this.props.handleFilterChange(this.props.value);
   }
   
@@ -16,6 +14,7 @@ class FilterRow extends React.Component {
         <div>
             <input
                 type="checkbox"
+                data-filter={this.props.value}
                 checked={this.props.isChecked}
                 onChange={this.handleFilterChange}
             />
