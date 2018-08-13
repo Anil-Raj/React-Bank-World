@@ -1,27 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import FilterableProductTable from './FilterableProductTable';
-import registerServiceWorker from './registerServiceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Switch,Route } from "react-router-dom";
+import "./index.css";
+import FilterableTransactionTable from "./components/FilterableTransactionTable";
+import registerServiceWorker from "./registerServiceWorker";
+import TransactionDetail from './components/TransactionDetail';
+import store from "./store";
 
+let render = () =>ReactDOM.render(
+  <BrowserRouter>
+    <Switch>
+      <Route path="/" exact={true}>
+      <FilterableTransactionTable /> 
+      </Route>
+     <Route path="/:id" component={TransactionDetail}/> 
+    </Switch>
+  </BrowserRouter>,
+  document.getElementById("container")
+);
+render();
+store.subscribe(() => {
+  console.log("asdfasdf");
+  render();
+});
 
-
-
-const PRODUCTS = [
-    {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
-    {category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'},
-    {category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball'},
-    {category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch'},
-    {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
-    {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
-  ];
-  
-
-  
-// ReactDOM.render(<App />, document.getElementById('root'));
-ReactDOM.render(
-    <FilterableProductTable products={PRODUCTS} />,
-    document.getElementById('container')
-  );
-  
 registerServiceWorker();
