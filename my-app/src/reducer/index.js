@@ -1,7 +1,8 @@
 import {
   GET_ALL_TRANSACTION,
   FILTER_TRANSACTION,
-  SELECT_TRANSACTION
+  SELECT_TRANSACTION,
+  GOTO_PAGE
 } from "../actions/types";
 const initialState = {
   filterdItem: [],
@@ -13,20 +14,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case "UPDATE_NAME_FILTER":
-      console.log(state, action);
-      toggleArrayItem(state.filter.account, action.value);
-      const type = state.filter.type;
-      return {
-        ...state
-      };
-      break;
-    case "deposit-money":
-      //do something
-      break;
     case GET_ALL_TRANSACTION:
-      console.log(state, action);
-
       return {
         ...state,
         filteredTransactions: action.payload,
@@ -59,7 +47,7 @@ export default (state = initialState, action) => {
       currentPage:1
         }
       };
-	case "GOTO_PAGE":
+	case GOTO_PAGE:
 	const offset = (state.pagination.currentPage - 1) * state.pagination.pageLimit;
     const currentTransactions = state.filteredTransactions.slice(
       offset,
@@ -95,25 +83,16 @@ function filterCountries(payloads) {
   console.log(payloads);
   
   let transaction = payloads.transactionType.filter(trans => trans.isChecked);
-    // debugger;
     let accounts = payloads.accountName.filter(account => account.isChecked);
     let items= payloads.allTransactions;
-    // debugger;
     if(transaction.length){
         items = items.filter(item => transaction.find(trans => trans.name === item.transactionType)?item: void 0);
     }
     if(accounts.length){
         items = items.filter(item => accounts.find(account => account.name === item.accountName)?item: void 0);
     }
-    console.log(items);
-    
     return items;
 
-
-  // return allTransactions.filter(
-  //   t =>
-  //     filter.account.length === 0 || filter.account.indexOf(t.accountName) != -1
-  // );
 }
 
 function uniqueTransactionType(paylods) {
@@ -158,6 +137,4 @@ function toggleArrayItem(a, v) {
   var i = a.indexOf(v);
   if (i === -1) a.push(v);
   else a.splice(i, 1);
-
-  // return { ...a};
 }
