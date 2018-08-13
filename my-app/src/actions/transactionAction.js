@@ -24,13 +24,6 @@ export const filterTransaction = param => {
     });
 };
 
-export const selectTransaction=param =>{
-    store.dispatch({
-        type:SELECT_TRANSACTION,
-        payload: param
-    });
-}
-
 export const gotoPage = param =>{
     store.dispatch({
         type:'GOTO_PAGE',
