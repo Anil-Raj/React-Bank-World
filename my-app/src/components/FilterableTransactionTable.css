@@ -26,3 +26,18 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+body{
+  background: lightgrey;
+}
+.table{
+  background: white;
+  margin-bottom: 70px;
+}
+.top_header {
+  margin-left: 15px;
+}
+.row{
+  margin-right: -15px;
+    margin-left: 0px;
+}

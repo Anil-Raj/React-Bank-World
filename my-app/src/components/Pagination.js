@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
+import { gotoPage } from "../actions/transactionAction";
+import store from "../store";
 
 const LEFT_PAGE = "LEFT";
 const RIGHT_PAGE = "RIGHT";
@@ -19,14 +21,18 @@ const range = (from, to, step = 1) => {
 class Pagination extends Component {
   constructor(props) {
     super(props);
-    const { totalRecords = null, pageLimit = 30, pageNeighbours = 0 } = props;
+    const {
+      totalRecords = null,
+      pageLimit = 30,
+      pageNeighbours = 0
+    } = store.getState().pagination;
 
     this.pageLimit = typeof pageLimit === "number" ? pageLimit : 30;
     this.totalRecords = typeof totalRecords === "number" ? totalRecords : 0;
 
     this.pageNeighbours =
       typeof pageNeighbours === "number"
-        ? Math.max(0, Math.min(pageNeighbours, 2))
+        ? Math.max(0, Math.min(pageNeighbours, 1))
         : 0;
 
     this.totalPages = Math.ceil(this.totalRecords / this.pageLimit);
@@ -49,7 +55,7 @@ class Pagination extends Component {
       pageLimit: this.pageLimit,
       totalRecords: this.totalRecords
     };
-
+    gotoPage(page);
     this.setState({ currentPage }, () => onPageChanged(paginationData));
   };
 
@@ -69,8 +75,8 @@ class Pagination extends Component {
   };
 
   fetchPageNumbers = () => {
-    const totalPages = this.totalPages;
-    const currentPage = this.state.currentPage;
+    const totalPages = store.getState().pagination.totalPages;
+    const currentPage = store.getState().pagination.currentPage;
     const pageNeighbours = this.pageNeighbours;
 
     const totalNumbers = this.pageNeighbours * 2 + 3;
@@ -119,7 +125,12 @@ class Pagination extends Component {
     if (this.totalPages === 1) return null;
 
     const { currentPage } = this.state;
-    const pages = this.fetchPageNumbers();
+    let pages = this.fetchPageNumbers();
+    store.subscribe(() => {
+      pages = this.fetchPageNumbers();
+      console.log(pages);
+    });
+    console.log(pages);
 
     return (
       <Fragment>
@@ -179,12 +190,4 @@ class Pagination extends Component {
     );
   }
 }
-
-Pagination.propTypes = {
-  totalRecords: PropTypes.number.isRequired,
-  pageLimit: PropTypes.number,
-  pageNeighbours: PropTypes.number,
-  onPageChanged: PropTypes.func
-};
-
 export default Pagination;
