@@ -5,7 +5,7 @@ import reducer from "../reducer";
 const initialState = {
   filter: {
     account: [],
-    transaction: []
+    allTransactions: [{adsa:"asdfasdfas"}]
   },
   pagination: {
     currentPage: 1,

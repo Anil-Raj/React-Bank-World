@@ -32,3 +32,10 @@ export const gotoPage = param =>{
     })
 }
 
+export const updateTransactionTypeFilter = param => dispatch =>{
+    dispatch({
+        type:"UPDATE_TYPE_FILTER", 
+        param
+    })
+}
+

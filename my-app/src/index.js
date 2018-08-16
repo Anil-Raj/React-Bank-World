@@ -14,7 +14,7 @@ let render = () =>ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Route path="/" exact={true}>
-      <FilterableTransactionTable /> 
+      <FilterableTransactionTable  /> 
       </Route>
      <Route path="/:id" component={TransactionDetail}/> 
     </Switch>

@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { gotoPage } from "../actions/transactionAction";
-import store from "../store";
 import { connect } from 'react-redux';
 
 
@@ -128,10 +127,6 @@ class Pagination extends Component {
 
     const { currentPage } = this.state;
     let pages = this.fetchPageNumbers();
-    store.subscribe(() => {
-      pages = this.fetchPageNumbers();
-      console.log(pages);
-    });
     console.log(pages);
 
     return (
@@ -192,8 +187,6 @@ class Pagination extends Component {
     );
   }
 }
-// export default Pagination;
-
 
 const mapStateToProps = state => ({
   pagination: state.pagination
