@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import data from "../data.json";
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 
 
 export default class TransactionDetail extends React.Component {

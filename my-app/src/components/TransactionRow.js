@@ -1,12 +1,11 @@
-import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+
 
 class TransactionRow extends React.Component {
     render() {
       const product = this.props.product;
-      // console.log(product);
-      
-
       return (
         <tr>
           <td><Link to={product.account}>{product.account}</Link>{' '}</td>

@@ -17,8 +17,9 @@ export const fetchTransaction = () => {
 };
 
 
-export const filterTransaction = param => {
-     store.dispatch({
+export const filterTransaction = param => dispatch => {
+    console.log(param);
+     dispatch({
         type:FILTER_TRANSACTION,
         payload: param
     });

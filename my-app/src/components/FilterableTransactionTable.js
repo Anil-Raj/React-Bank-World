@@ -12,6 +12,8 @@ import {
 } from "../action-creator";
 import Account from "./Account";
 import TransactionType from "./Transactiontype";
+import { connect } from 'react-redux';
+
 
 class FilterableTransactionTable extends React.Component {
   state = {
@@ -42,6 +44,8 @@ class FilterableTransactionTable extends React.Component {
   }
   render = () => {
     if (store.getState().allTransactions.length === 0) return null;
+    // if (this.props.allTransactions.length === 0) return null;
+    
     return (
       <div className="container">
         <div className="top_header">
@@ -67,6 +71,8 @@ class FilterableTransactionTable extends React.Component {
               </thead>
               <tbody>
                 {store.getState().currentTransactions.map((item, index) => (
+                // {this.props.currentTransactions.map((item, index) => (
+                  
                   <TransactionRow product={item} key={index} />
                 ))}
               </tbody>
@@ -84,5 +90,21 @@ class FilterableTransactionTable extends React.Component {
     );
   };
 }
+
+// const CounterContainer = connect(
+//   state => ({ 
+//      allTransactions: state.allTransactions ,
+//      currentTransactions: state.currentTransactions
+  
+  
+//   }),
+//   dispatch => ({ 
+//     // onIncrement: () => dispatch(increment()) ,
+//     updateTransactionTypeFilter:(e)=> {
+//       const value = e.target.dataset.filter;
+//       dispatch(updateTransactionTypeFilter(value));
+//     }
+//   })
+// )(FilterableTransactionTable)
 
 export default FilterableTransactionTable;

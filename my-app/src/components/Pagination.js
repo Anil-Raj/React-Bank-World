@@ -2,6 +2,8 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { gotoPage } from "../actions/transactionAction";
 import store from "../store";
+import { connect } from 'react-redux';
+
 
 const LEFT_PAGE = "LEFT";
 const RIGHT_PAGE = "RIGHT";
