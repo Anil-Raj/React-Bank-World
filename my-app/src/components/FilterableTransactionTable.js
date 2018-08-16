@@ -17,18 +17,9 @@ import { connect } from 'react-redux';
 class FilterableTransactionTable extends React.Component {
   constructor(props) {
     super(props);
-    fetchTransaction();
     console.log(this.props.allTransactions);
-
   }
 
-  componentWillMount() {
-    fetchTransaction();
-  }
-  componentDidMount() {
-    console.log(this.props.allTransactions);
-    this.render();
-  }
   updateTransactionTypeFilter(e) {
     console.log(e.target.dataset.filter);
     const value = e.target.dataset.filter;
@@ -90,7 +81,7 @@ const mapStateToProps = (state, props) => {
   console.log(state,props);
   
   return { 
-    allTransactions: state ,
+    allTransactions: state.allTransactions ,
     currentTransactions: state.currentTransactions
  };
 };
