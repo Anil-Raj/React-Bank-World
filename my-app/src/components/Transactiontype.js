@@ -43,7 +43,7 @@ class TransactionType extends React.Component {
           className="list"
           style={{ display: this.state.isDisplay ? "block" : "none" }}
         >
-          { this.props.transactionType.map((transaction, idx) => (
+          { (this.props.transactionType || []).map((transaction, idx) => (
             <div key={idx}>
               <label className="input_container">
                 {transaction.name}

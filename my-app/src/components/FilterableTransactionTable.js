@@ -17,6 +17,7 @@ import { connect } from 'react-redux';
 class FilterableTransactionTable extends React.Component {
   constructor(props) {
     super(props);
+    this.props.fetchTransaction();
     console.log(this.props.allTransactions);
   }
 
@@ -54,8 +55,7 @@ class FilterableTransactionTable extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                 {store.getState().currentTransactions.map((item, index) => ( 
-                  //  {(this.props.currentTransactions || []).map((item, index) => ( 
+                   {this.props.currentTransactions.map((item, index) => ( 
                   // console.log(item);
                   
                   
@@ -86,9 +86,16 @@ const mapStateToProps = (state, props) => {
  };
 };
 
+const mapStateToRed = (dispatch) => {
+  return { 
+    updateTransactionTypeFilter: updateTransactionTypeFilter ,
+    fetchTransaction: fetchTransaction
+ };
+};
+
 const CounterContainer = connect(
   mapStateToProps,
- {updateTransactionTypeFilter}
+  mapStateToRed
 )(FilterableTransactionTable)
 
-export default FilterableTransactionTable;
+export default CounterContainer;

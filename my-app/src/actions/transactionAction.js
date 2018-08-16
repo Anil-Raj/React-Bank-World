@@ -3,17 +3,29 @@ import {
     FILTER_TRANSACTION,
     SELECT_TRANSACTION
 } from "./types";
-import data from '../data.json'
-import store from '../store'
+import data from '../data.json';
+import store from '../store';
+import axios from 'axios';
+
+export default class Transaction {
+
+    constructor() {
+        this.transactions = [];       
+    }
+
+    static async getTransaction() {
+        this.transactions = await data.transactions;
+        return this.transactions;
+    }
+}
 
 
-export const fetchTransaction = () => {
-    console.log('inside Filter');
-    store.dispatch({
+export const fetchTransaction = () => dispatch => {
+    Transaction.getTransaction().then(transactions => dispatch({
         type: GET_ALL_TRANSACTION,
-        payload: data.transactions
+        payload: transactions
     })
-    console.log(store.getState())
+    );
 };
 
 

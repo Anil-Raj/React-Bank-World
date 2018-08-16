@@ -44,7 +44,7 @@ class Account extends React.Component {
           className="list"
           style={{ display: this.state.isDisplay ? "block" : "none" }}
         >
-          {this.props.accounts.map((account, idx) => (
+          {(this.props.accounts || []).map((account, idx) => (
             <div key={idx}>
               <label className="input_container">
                 {account.name}

@@ -3,9 +3,12 @@ import thunk from 'redux-thunk';
 import reducer from "../reducer";
 
 const initialState = {
+  allTransactions :[],
+  currentTransactions:[],
+  filteredTransactions:[],
   filter: {
     account: [],
-    allTransactions: [{adsa:"asdfasdfas"}]
+    transactionType: []
   },
   pagination: {
     currentPage: 1,

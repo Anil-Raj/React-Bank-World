@@ -5,14 +5,22 @@ import {
   GOTO_PAGE
 } from "../actions/types";
 const initialState = {
-  filterdItem: [],
-  items: [],
-  item: {},
-  accountName: [],
-  transactionType: []
+  allTransactions :[],
+  currentTransactions:[],
+  filteredTransactions:[],
+  filter: {
+    account: [],
+    transactionType: []
+  },
+  pagination: {
+    currentPage: 1,
+    totalPages: null,
+    pageLimit: 10,
+    totalRecords: null
+  }
 };
 
-export default (state = initialState, action) => {
+export default (state = initialState , action) => {
   switch (action.type) {
     case GET_ALL_TRANSACTION:
       return {
@@ -58,6 +66,8 @@ export default (state = initialState, action) => {
         }
       };
     case GOTO_PAGE:
+      console.log(state);
+      
       const offset =
         (state.pagination.currentPage - 1) * state.pagination.pageLimit;
       const currentTransactions = state.filteredTransactions.slice(

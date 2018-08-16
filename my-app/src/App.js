@@ -6,11 +6,12 @@ import PropTypes from "prop-types";
 import { fetchTransaction } from "./actions/transactionAction";
 import FilterableTransactionTable from "./components/FilterableTransactionTable";
 import TransactionDetail from './components/TransactionDetail';
+import store from "./store";
+
 
 class App extends Component {
   componentWillMount() {
-    // this.props.fetchTransaction();
-    fetchTransaction();
+    this.props.fetchTransaction();
     
   }
 
@@ -18,9 +19,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/" exact={true}>
-            <FilterableTransactionTable />
-          </Route>
+          <Route path="/" component={FilterableTransactionTable} />
           <Route path="/:id" component={TransactionDetail} />
         </Switch>
       </BrowserRouter>
@@ -29,10 +28,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  fetchTransaction: PropTypes.func.isRequired
-};
+  fetchTransaction: PropTypes.func.isRequired,
+}
 
-export default connect(
-  null,
-  { fetchTransaction }
-)(App);
+export default connect(null, { fetchTransaction })(App)
