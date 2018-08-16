@@ -5,11 +5,18 @@ import {
   GOTO_PAGE
 } from "../actions/types";
 const initialState = {
-  filterdItem: [],
-  items: [],
-  item: {},
-  accountName: [],
-  transactionType: []
+  allTransactions:[],
+  currentTransaction:[],
+  filter: {
+    account: [],
+    transactionType: []
+  },
+  pagination: {
+    currentPage: 1,
+    totalPages: null,
+    pageLimit: 10,
+    totalRecords: null
+  }
 };
 
 export default (state = initialState, action) => {

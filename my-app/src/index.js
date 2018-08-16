@@ -23,9 +23,4 @@ let render = () =>ReactDOM.render(
   document.getElementById("container")
 );
 render();
-store.subscribe(() => {
-  console.log("asdfasdf");
-  render();
-});
-
 registerServiceWorker();

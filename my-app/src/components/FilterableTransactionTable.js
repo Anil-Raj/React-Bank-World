@@ -63,8 +63,8 @@ class FilterableTransactionTable extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                 {store.getState().currentTransactions.map((item, index) => ( 
-                  //  {(this.props.currentTransactions || []).map((item, index) => ( 
+                 {/* {store.getState().currentTransactions.map((item, index) => (  */}
+                   {(this.props.currentTransactions || []).map((item, index) => ( 
                   // console.log(item);
                   
                   
@@ -90,7 +90,7 @@ const mapStateToProps = (state, props) => {
   console.log(state,props);
   
   return { 
-    allTransactions: state ,
+    allTransactions: state.allTransactions ,
     currentTransactions: state.currentTransactions
  };
 };
@@ -100,4 +100,4 @@ const CounterContainer = connect(
  {updateTransactionTypeFilter}
 )(FilterableTransactionTable)
 
-export default FilterableTransactionTable;
+export default CounterContainer;
