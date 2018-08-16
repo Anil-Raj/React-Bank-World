@@ -27,7 +27,7 @@ class Pagination extends Component {
       totalRecords = null,
       pageLimit = 30,
       pageNeighbours = 0
-    } = store.getState().pagination;
+    } = this.props.pagination;
 
     this.pageLimit = typeof pageLimit === "number" ? pageLimit : 30;
     this.totalRecords = typeof totalRecords === "number" ? totalRecords : 0;
@@ -77,8 +77,8 @@ class Pagination extends Component {
   };
 
   fetchPageNumbers = () => {
-    const totalPages = store.getState().pagination.totalPages;
-    const currentPage = store.getState().pagination.currentPage;
+    const totalPages = this.props.pagination.totalPages;
+    const currentPage = this.props.pagination.currentPage;
     const pageNeighbours = this.pageNeighbours;
 
     const totalNumbers = this.pageNeighbours * 2 + 3;
@@ -192,4 +192,15 @@ class Pagination extends Component {
     );
   }
 }
-export default Pagination;
+// export default Pagination;
+
+
+const mapStateToProps = state => ({
+  pagination: state.pagination
+});
+
+export default connect(
+  mapStateToProps,
+  {  }
+)(Pagination);
+

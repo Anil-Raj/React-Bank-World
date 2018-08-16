@@ -12,8 +12,6 @@ import {
 } from "../action-creator";
 import Account from "./Account";
 import TransactionType from "./Transactiontype";
-import { connect } from 'react-redux';
-
 
 class FilterableTransactionTable extends React.Component {
   state = {
@@ -44,8 +42,6 @@ class FilterableTransactionTable extends React.Component {
   }
   render = () => {
     if (store.getState().allTransactions.length === 0) return null;
-    // if (this.props.allTransactions.length === 0) return null;
-    
     return (
       <div className="container">
         <div className="top_header">
@@ -71,9 +67,7 @@ class FilterableTransactionTable extends React.Component {
               </thead>
               <tbody>
                 {store.getState().currentTransactions.map((item, index) => (
-                // {this.props.currentTransactions.map((item, index) => (
-                  
-                  <TransactionRow product={item} key={index} />
+                  <TransactionRow transaction={item} key={index} />
                 ))}
               </tbody>
             </table>
@@ -91,6 +85,96 @@ class FilterableTransactionTable extends React.Component {
   };
 }
 
+export default FilterableTransactionTable;
+
+
+
+
+// import React, { Component } from "react";
+// import logo from "../logo.svg";
+// import "./FilterableTransactionTable.css";
+// import TransactionRow from "./TransactionRow.js";
+// import store from "../store";
+// import Pagination from "./Pagination";
+// import data from "../data.json";
+// import { fetchTransaction } from "../actions/transactionAction";
+// import {
+//   updateAccountNameFilter,
+//   updateTransactionTypeFilter
+// } from "../action-creator";
+// import Account from "./Account";
+// import TransactionType from "./Transactiontype";
+// import { connect } from 'react-redux';
+
+
+// class FilterableTransactionTable extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     // transactionLength = this.props.allTransactions;
+//     console.log(this.props.allTransactions);
+    
+//     store.subscribe(() => {
+//       this.render();
+//     });
+//   }
+
+//   componentWillMount() {
+//     fetchTransaction();
+//   }
+//   updateTransactionTypeFilter(e) {
+//     console.log(e.target.dataset.filter);
+//     const value = e.target.dataset.filter;
+//     this.props.updateTransactionTypeFilter(value);
+//   }
+//   render = () => {
+//     // if (store.getState().allTransactions.length === 0) return null;
+//     if (this.props.allTransactions.length === 0) return null;
+    
+//     return (
+//       <div className="container">
+//         <div className="top_header">
+//           <h2>My Transactions</h2>
+//         </div>
+//         <div className="row">
+//           <div className="col-md-4">
+//             <div className="row">
+//               <Account />
+//               <TransactionType />
+//             </div>
+//           </div>
+//           <div className="col-md-8 ">
+//             <table className="table table-bordered">
+//               <thead>
+//                 <tr>
+//                   <th>Acc. No.</th>
+//                   <th>Account Name</th>
+//                   <th>Currency</th>
+//                   <th>Ammount</th>
+//                   <th>Transaction</th>
+//                 </tr>
+//               </thead>
+//               <tbody>
+//                 {/* {store.getState().currentTransactions.map((item, index) => ( */}
+//                  {this.props.currentTransactions.map((item, index) => (
+                  
+//                   <TransactionRow product={item} key={index} />
+//                 ))}
+//               </tbody>
+//             </table>
+//           </div>
+//         </div>
+//         <div className="row">
+//             <div className="col-md-4">
+//             </div>
+//             <div className="col-md-8 ">
+//             <Pagination />
+//             </div>
+//           </div>
+//       </div>
+//     );
+//   };
+// }
+
 // const CounterContainer = connect(
 //   state => ({ 
 //      allTransactions: state.allTransactions ,
@@ -98,13 +182,7 @@ class FilterableTransactionTable extends React.Component {
   
   
 //   }),
-//   dispatch => ({ 
-//     // onIncrement: () => dispatch(increment()) ,
-//     updateTransactionTypeFilter:(e)=> {
-//       const value = e.target.dataset.filter;
-//       dispatch(updateTransactionTypeFilter(value));
-//     }
-//   })
+//  {updateTransactionTypeFilter}
 // )(FilterableTransactionTable)
 
-export default FilterableTransactionTable;
+// export default FilterableTransactionTable;
