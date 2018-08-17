@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-// import store from "../store";
 import "./Account.css";
-import {
-  updateAccountNameFilter,
-  updateTransactionTypeFilter
-} from "../action-creator";
 import { filterTransaction } from "../actions/transactionAction";
 import { connect } from "react-redux";
 

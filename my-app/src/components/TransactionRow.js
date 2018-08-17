@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { selectTransaction } from "../reducer";
 import PropTypes from "prop-types";
 
-export default class TransactionRow extends React.Component {
+class TransactionRow extends React.Component {
   render() {
     const transaction = this.props.transaction;
     return (
@@ -12,7 +12,7 @@ export default class TransactionRow extends React.Component {
         <td>
           <Link
             onClick={() => {
-              selectTransaction(transaction);
+              this.props.selectTransaction(transaction);
             }}
             to={transaction.account}
           >
@@ -27,3 +27,10 @@ export default class TransactionRow extends React.Component {
     );
   }
 }
+
+const CounterContainer = connect(
+  state => {transaction : state.selected_Transaction},
+  { selectTransaction }
+)(TransactionRow);
+
+export default CounterContainer;

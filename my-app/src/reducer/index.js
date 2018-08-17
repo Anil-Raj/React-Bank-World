@@ -7,6 +7,7 @@ import {
 const initialState = {
   allTransactions:[],
   currentTransaction:[],
+  selected_Transaction:{},
   filter: {
     account: [],
     transactionType: []
@@ -83,6 +84,8 @@ export default (state = initialState, action) => {
         }
       };
     case SELECT_TRANSACTION:
+    console.log(state,action);
+    
       return {
         ...state,
         selected_Transaction: action.payload
